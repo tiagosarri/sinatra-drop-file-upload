@@ -6,6 +6,7 @@ set :raise_errors, false
 set :show_exceptions, false
 
 
+
 helpers do
   def host
     request.env['HTTP_HOST']
@@ -24,6 +25,7 @@ helpers do
   end
 
 end
+
 
 get "/" do
   erb :index
