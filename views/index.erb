@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
     <title>Sinatra Drop File Upload</title>
-    <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
+    <%= stylesheet_link_tag '/stylesheets/screen.css', :media => 'Screen' %>
+    
 	  <meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate">
 		<meta http-equiv="cache-control" content="post-check=1, pre-check=2">
@@ -13,7 +14,7 @@
   </head>
   <body>
 		oi...
-    <script type="text/javascript" src="/javascripts/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="/javascripts/application.js"></script>
+		
+		<%= javascript_include_tag '/javascripts/jquery-1.7.1.min.js', '/javascripts/application.js' %>
   </body>
 </html>

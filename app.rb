@@ -1,4 +1,5 @@
 require "sinatra"
+require 'sinatra/static_assets'
 
 enable :sessions
 set :raise_errors, false
