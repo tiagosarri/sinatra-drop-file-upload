@@ -1,11 +1,8 @@
 require "sinatra"
 require 'sinatra/static_assets'
 
-enable :sessions
 set :raise_errors, false
 set :show_exceptions, false
-
-
 
 helpers do
   def host
@@ -26,7 +23,10 @@ helpers do
 
 end
 
-
 get "/" do
   erb :index
+end
+
+post '/upload' do
+  puts "uploaded #{env['HTTP_X_FILENAME']} - #{request.body.read.size} bytes"
 end

@@ -1,0 +1,9 @@
+#dragZone{
+	width:400px;
+	height:400px;
+	border:1px dashed red;
+	background: white;
+}
+#dragZone.dnd-enter{
+	border:1px dashed green;
+}
