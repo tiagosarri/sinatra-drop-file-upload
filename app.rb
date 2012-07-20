@@ -28,14 +28,21 @@ get "/" do
 end
 
 post '/upload' do
-  if params[:file]
-    filename = params[:file][:filename]
-    file = params[:file][:tempfile]
-
-    File.open(File.join("/uploads", filename), 'wb') {|f| f.write file.read }
-    
-    return "ok"
+  demo_mode = false
+  upload_dir = "public/uploads"
+  
+  if (!demo_mode)
+    if params[:pic]
+      filename = params[:pic][:filename]
+      file = params[:pic][:tempfile]
+  
+      File.open(File.join(upload_dir, filename), 'wb') {|f| f.write file.read }
+      
+      return "{\"status\":\"File was uploaded successfuly!\"}"
+    else
+      return "{\"status\":\"error.\"}"  
+    end
   else
-    return "not ok #{params[:param1]}"  
+    return "{\"status\":\"Uploads are ignored in demo mode.\"}"    
   end
 end
