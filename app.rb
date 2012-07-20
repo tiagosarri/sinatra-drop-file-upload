@@ -28,5 +28,14 @@ get "/" do
 end
 
 post '/upload' do
-  puts "uploaded #{env['HTTP_X_FILENAME']} - #{request.body.read.size} bytes"
+  if params[:file]
+    filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+
+    File.open(File.join("/uploads", filename), 'wb') {|f| f.write file.read }
+    
+    return "ok"
+  else
+    return "not ok #{params[:param1]}"  
+  end
 end
