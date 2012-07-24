@@ -1,0 +1,20 @@
+defaults: &defaults
+  host: localhost
+  allow_dynamic_fields: false
+
+development:
+  database: sinatra_drop_file_upload_development
+
+test:
+  <<: *defaults
+  database: sinatra_drop_file_upload_test
+
+# set these environment variables on your prod server
+production:
+  uri: <%= ENV['MONGOHQ_URL'] %>
+  allow_dynamic_fields: false
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

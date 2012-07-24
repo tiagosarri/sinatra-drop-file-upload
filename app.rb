@@ -1,8 +1,15 @@
 require "sinatra"
 require 'sinatra/static_assets'
+require 'mongoid'
+
+require './models/user'
 
 set :raise_errors, false
 set :show_exceptions, false
+
+configure do
+  Mongoid.load!("./config/mongoid.yml")
+end
 
 helpers do
   def host
@@ -24,6 +31,8 @@ helpers do
 end
 
 get "/" do
+  #User.create_message "teste23-4"
+  #@temp = User.all
   erb :index
 end
 
