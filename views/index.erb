@@ -13,13 +13,28 @@
 		<meta http-equiv="Expires" content="-1">      
   </head>
   <body>
-		
-		<h1>HTML5 File Upload with jQuery and Ruby/Sinatra</h1>
-		<div id="dropbox">
-			<span class="message">Drop images here to upload. <br /><i>(they will only be visible to you)</i></span>
-		</div>		
+		<div id="wrapper">
+			<h1>HTML5 File Upload with jQuery and Ruby/Sinatra</h1>
+			
+			<div class="box-form-user" id="box-form-user">
+				<form method="post" id="form-user" action="/post_user" data-remote="true">
+			    <fieldset>
+			    	<legend>Enter your e-mail</legend>
+		        <label id="userName">
+		            Email:
+		            <input type="text" name="email">
+		        </label>
+		        <input type="submit" value="submit">
+			    </fieldset>    
+				</form>
+			</div>
+			
+			<div id="dropbox" style="display: none">
+				<span class="message">Drop images here to upload. <br /><i>(they will only be visible to you)</i></span>
+			</div>
+		</div>			
 				
-		<%= javascript_include_tag '/javascripts/jquery-1.7.1.min.js', '/javascripts/application.js', '/javascripts/jquery.filedrop.js' %>
+		<%= javascript_include_tag '/javascripts/jquery-1.7.1.min.js', '/javascripts/application.js', '/javascripts/jquery.filedrop.js', '/javascripts/rails.js' %>
 		<!-- example for PHP http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/ -->		
   </body>
 </html>

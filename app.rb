@@ -31,9 +31,16 @@ helpers do
 end
 
 get "/" do
-  #User.create_message "teste23-4"
-  #@temp = User.all
   erb :index
+end
+
+post '/post_user' do
+  if (params[:email] != nil && params[:email] != "")
+    User.get_or_create params[:email]
+    return '{ "type_return" : "ok", "message" :  "" }'
+  else
+    return '{ "type_return" : "error", "message" :  "email invalid" }'  
+  end
 end
 
 post '/upload' do

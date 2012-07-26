@@ -100,3 +100,21 @@ $(function(){
 	}
 
 });
+
+//dropbox
+
+$('#form-user').bind("ajax:success", function(evt, data, status, xhr){
+  var $form = $(this);
+}).bind("ajax:error", function(evt, xhr, status, error){
+}).bind("ajax:complete", function(evt, xhr, status, error){
+	var response = eval("("+xhr.responseText+")");
+	
+	if (response.type_return == "ok") {
+		$("#dropbox").show();
+		$("#box-form-user").html("");
+	} else {
+		
+	}
+	
+	console.log(xhr.responseText);
+});
