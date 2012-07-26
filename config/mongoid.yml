@@ -3,6 +3,7 @@ defaults: &defaults
   allow_dynamic_fields: false
 
 development:
+  <<: *defaults
   database: sinatra_drop_file_upload_development
 
 test:
