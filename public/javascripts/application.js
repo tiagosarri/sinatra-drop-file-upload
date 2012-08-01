@@ -112,9 +112,18 @@ $('#form-user').bind("ajax:success", function(evt, data, status, xhr){
 	if (response.type_return == "ok") {
 		$("#dropbox").show();
 		$("#box-form-user").html("");
+		
+		//box-photos-user
+  	if (response.photos != null && response.photos.length > 0) {
+  		var list = $('<ul/>').appendTo('#box-photos-user');
+  		
+  		$.each(response.photos, function(i, item){
+				item = response.photos[i];
+				list.append('<li><img src="'+ item.avatar.thumb.url +'" /></li>');
+			});
+		}		
+		
 	} else {
 		
 	}
-	
-	console.log(xhr.responseText);
 });

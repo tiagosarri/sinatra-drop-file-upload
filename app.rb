@@ -34,7 +34,8 @@ helpers do
 end
 
 get "/" do
-  @temp = Photo.all
+  #@temp = Photo.all
+  @temp = nil
   #Photo.all.destroy
   erb :index
 end
@@ -45,8 +46,9 @@ post '/post_user' do
     
     if (user != nil)
       session[:user_id] = user.id
+      photos = Photo.load_by_user user.id
     end
-    return '{ "type_return" : "ok", "message" :  "" }'
+    return "{ \"type_return\" : \"ok\", \"photos\" :  #{photos.to_json} }"
   else
     return '{ "type_return" : "error", "message" :  "email invalid" }'  
   end
@@ -60,7 +62,7 @@ post '/upload' do
     if params[:pic]
       Photo.create! :user_id => session[:user_id], :avatar => params[:pic] 
       #File.open(File.join(upload_dir, filename), 'wb') {|f| f.write file.read }
-      return "{\"status\":\"File was uploaded successfuly!"
+      return "{\"status\":\"File was uploaded successfuly!\"}"  
     else
       return "{\"status\":\"error.\"}"  
     end

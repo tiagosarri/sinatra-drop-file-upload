@@ -13,4 +13,12 @@ class Photo
   
   belongs_to :user
   
+  def self.load_by_user user_id, limit = nil
+    if (limit != nil)
+      Photo.where(user_id: user_id).limit(limit)
+    else  
+      Photo.where(user_id: user_id)
+    end
+  end  
+  
 end
