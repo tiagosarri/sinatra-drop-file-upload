@@ -16,6 +16,13 @@
 		<div id="wrapper">
 			<h1>HTML5 File Upload with jQuery and Ruby/Sinatra</h1>
 			
+			<% if (@temp != nil && @temp.length > 0) %>
+				<% @temp.each_with_index do |item,index| %>
+					<%=index%>:
+					 <img src="<%= item.avatar.thumb %>" /><br />
+				<% end %>
+			<% end %>
+			
 			<div class="box-form-user" id="box-form-user">
 				<form method="post" id="form-user" action="/post_user" data-remote="true">
 			    <fieldset>

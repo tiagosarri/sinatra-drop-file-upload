@@ -3,7 +3,10 @@ require 'sinatra/static_assets'
 require 'mongoid'
 
 require './models/user'
+require './models/photo'
+require './uploaders/avatar_uploader'
 
+enable :sessions
 set :raise_errors, false
 set :show_exceptions, false
 
@@ -31,12 +34,18 @@ helpers do
 end
 
 get "/" do
+  @temp = Photo.all
+  #Photo.all.destroy
   erb :index
 end
 
 post '/post_user' do
   if (params[:email] != nil && params[:email] != "")
-    User.get_or_create params[:email]
+    user = User.get_or_create params[:email]
+    
+    if (user != nil)
+      session[:user_id] = user.id
+    end
     return '{ "type_return" : "ok", "message" :  "" }'
   else
     return '{ "type_return" : "error", "message" :  "email invalid" }'  
@@ -49,12 +58,9 @@ post '/upload' do
   
   if (!demo_mode)
     if params[:pic]
-      filename = params[:pic][:filename]
-      file = params[:pic][:tempfile]
-  
-      File.open(File.join(upload_dir, filename), 'wb') {|f| f.write file.read }
-      
-      return "{\"status\":\"File was uploaded successfuly!\"}"
+      Photo.create! :user_id => session[:user_id], :avatar => params[:pic] 
+      #File.open(File.join(upload_dir, filename), 'wb') {|f| f.write file.read }
+      return "{\"status\":\"File was uploaded successfuly!"
     else
       return "{\"status\":\"error.\"}"  
     end
